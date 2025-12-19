@@ -1,17 +1,8 @@
 /* Define your custom fonts */
 @font-face {
   font-family: 'Nexa Rust Sans Black';
-  src: url('fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
-       url('fonts/NexaRustSansBlack-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap; /* Improves loading performance */
-}
-
-@font-face {
-  font-family: 'Nexa Rust Sans Black';
-  src: url('fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
-       url('fonts/NexaRustSansBlack-Regular.otf') format('opentype');
+  src: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
+       url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/fonts/NexaRustSansBlack-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

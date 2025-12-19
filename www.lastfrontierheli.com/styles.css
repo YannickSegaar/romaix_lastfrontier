@@ -35,24 +35,35 @@
   font-family: 'Nexa Rust Sans Black', sans-serif !important;
 }
 
+/* ========================================
+   BACKGROUND IMAGE - CHAT AREA ONLY
+   ======================================== */
 
-/* Background for message dialog area */
+/* Background for message dialog area (not header or footer) */
 .vfrc-chat--dialog {
   background-image: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/images/ChatBackground.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: scroll !important;
+  position: relative !important; /* Required for z-index layering */
 }
 
-/* White overlay for readability */
-.vfrc-chat--dialog::after {
+/* White overlay BEHIND messages but ON TOP of background */
+.vfrc-chat--dialog::before {
   content: '' !important;
   position: absolute !important;
   top: 0 !important;
   left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
+  right: 0 !important;
+  bottom: 0 !important;
   background-color: rgba(255, 255, 255, 0.7) !important; /* 70% white overlay */
   pointer-events: none !important;
+  z-index: 0 !important; /* Behind messages */
+}
+
+/* Make sure messages appear ABOVE the overlay */
+.vfrc-chat--dialog > * {
+  position: relative !important;
+  z-index: 1 !important; /* Above overlay */
 }

@@ -36,20 +36,28 @@
 }
 
 /* ========================================
-   BACKGROUND IMAGE - CHAT AREA ONLY
+   BACKGROUND IMAGE - POPOVER MODE FIX
    ======================================== */
 
-/* Background for message dialog area (not header or footer) */
+/* Remove padding/margins from chat container */
+.vfrc-chat {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Background for message dialog area */
 .vfrc-chat--dialog {
   background-image: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/images/ChatBackground.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-attachment: scroll !important;
-  position: relative !important; /* Required for z-index layering */
+  position: relative !important;
+  padding: 0 !important; /* Remove side padding */
+  margin: 0 !important; /* Remove margins */
 }
 
-/* White overlay BEHIND messages but ON TOP of background */
+/* White overlay BEHIND messages */
 .vfrc-chat--dialog::before {
   content: '' !important;
   position: absolute !important;
@@ -57,13 +65,74 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  background-color: rgba(255, 255, 255, 0.7) !important; /* 70% white overlay */
+  background-color: rgba(255, 255, 255, 0.6) !important; /* Reduced to 60% */
   pointer-events: none !important;
-  z-index: 0 !important; /* Behind messages */
+  z-index: 0 !important;
 }
 
 /* Make sure messages appear ABOVE the overlay */
 .vfrc-chat--dialog > * {
   position: relative !important;
-  z-index: 1 !important; /* Above overlay */
+  z-index: 1 !important;
+}
+
+/* ========================================
+   FIX BANNER AREA ("How can I help you?")
+   ======================================== */
+
+/* Style the banner/prompt area */
+.vfrc-prompt {
+  background-color: rgba(255, 255, 255, 0.95) !important; /* Semi-transparent white */
+  padding: 16px !important;
+  border-radius: 8px !important;
+  margin: 12px !important; /* Add some spacing from edges */
+  position: relative !important;
+  z-index: 2 !important; /* Above overlay */
+}
+
+/* Make banner text more visible */
+.vfrc-prompt .vfrc-assistant-info--title,
+.vfrc-prompt .vfrc-assistant-info--description {
+  color: #000000 !important; /* Black text */
+  text-shadow: none !important;
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
+}
+
+/* Alternative: Style the system response messages in the banner */
+.vfrc-system-response {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Make the "How can I help you?" message more visible */
+.vfrc-system-response .vfrc-message {
+  background-color: rgba(255, 255, 255, 0.95) !important; /* Almost opaque white */
+  color: #000000 !important; /* Black text */
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important; /* Subtle shadow */
+}
+
+/* User messages should also be clearly visible */
+.vfrc-user-response .vfrc-message {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  color: #000000 !important;
+  padding: 12px 16px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ========================================
+   REMOVE SIDE MARGINS/PADDING
+   ======================================== */
+
+/* Remove spacing from the spacer element */
+.vfrc-chat--spacer {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Adjust message container padding */
+.vfrc-message {
+  margin: 8px 12px !important; /* Small margin for breathing room */
 }

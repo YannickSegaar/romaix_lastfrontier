@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="13px" viewBox="0 0 20 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.1 (47250) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-292.000000, -3511.000000)">
+        <g id="Section:-Newsletter" transform="translate(289.000000, 3388.000000)" fill="#ffffff" fill-rule="nonzero">
+            <g id="Group-10" transform="translate(0.000000, 120.000000)">
+                <path d="M3,5 L3,13.6850264 C3,14.7895959 3.8954305,15.6850264 5,15.6850264 L20.7999992,15.6850264 C21.9045687,15.6850264 22.7999992,14.7895959 22.7999992,13.6850264 L22.7999992,5 C22.7999992,3.8954305 21.9045687,3 20.7999992,3 L5,3 C3.8954305,3 3,3.8954305 3,5 Z M21.1834694,3.85870362 L12.900311,10.7619584 L4.6159071,3.85870362 L21.1834694,3.85870362 Z M3.85932632,4.3462779 L11.6199709,10.8128581 C12.3616568,11.4308701 13.4389499,11.4308519 14.1806149,10.8128148 L21.9406729,4.3462779 L21.9406729,14.8263228 L3.85932632,14.8257001 L3.85932632,4.3462779 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,45 @@
+/* Define your custom fonts */
+@font-face {
+  font-family: 'Nexa Rust Sans Black 2';
+  src: url('fonts/NexaRustSansBlack2-Regular.woff2') format('woff2'),
+       url('fonts/NexaRustSansBlack2-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves loading performance */
+}
+
+@font-face {
+  font-family: 'Nexa Rust Sans Black';
+  src: url('fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
+       url('fonts/NexaRustSansBlack-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply font to header/title */
+.vfrc-header,
+.vfrc-assistant-info--title {
+  font-family: 'Nexa Rust Sans Black 2', sans-serif !important;
+}
+
+/* Apply font to agent messages */
+.vfrc-system-response .vfrc-message {
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
+}
+
+/* Apply font to user messages */
+.vfrc-user-response .vfrc-message {
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
+}
+
+/* Apply to input field */
+.vfrc-input,
+.vfrc-input::placeholder {
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
+}
+
+/* Apply to buttons */
+.vfrc-button {
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
+}

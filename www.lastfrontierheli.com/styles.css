@@ -36,14 +36,17 @@
 }
 
 
-.vfrc-chat {
+/* Background for message dialog area */
+.vfrc-chat--dialog {
   background-image: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/images/ChatBackground.jpg') !important;
   background-size: cover !important;
-  position: relative !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: scroll !important;
 }
 
 /* White overlay for readability */
-.vfrc-chat::after {
+.vfrc-chat--dialog::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important;

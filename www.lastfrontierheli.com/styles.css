@@ -34,3 +34,22 @@
 .vfrc-button {
   font-family: 'Nexa Rust Sans Black', sans-serif !important;
 }
+
+
+.vfrc-chat {
+  background-image: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/images/ChatBackground.jpg') !important;
+  background-size: cover !important;
+  position: relative !important;
+}
+
+/* White overlay for readability */
+.vfrc-chat::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: rgba(255, 255, 255, 0.7) !important; /* 70% white overlay */
+  pointer-events: none !important;
+}

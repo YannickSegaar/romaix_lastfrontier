@@ -1,8 +1,8 @@
 /* Define your custom fonts */
 @font-face {
-  font-family: 'Nexa Rust Sans Black 2';
-  src: url('fonts/NexaRustSansBlack2-Regular.woff2') format('woff2'),
-       url('fonts/NexaRustSansBlack2-Regular.otf') format('opentype');
+  font-family: 'Nexa Rust Sans Black ';
+  src: url('fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
+       url('fonts/NexaRustSansBlack-Regular.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap; /* Improves loading performance */

@@ -26,14 +26,38 @@
 }
 
 /* ========================================
-   BACKGROUND IMAGE - CHAT DIALOG ONLY
+   BACKGROUND IMAGE - ENTIRE CHAT DIALOG CONTAINER
    ======================================== */
 
+/* Remove all padding and margins from chat dialog */
 .vfrc-chat--dialog {
   background-image: url('https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/images/ChatBackground.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  min-height: 100% !important;
+  background-attachment: scroll !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* Ensure assistant info area also has no padding/margins */
+.vfrc-assistant-info {
+  padding: 16px !important; /* Keep some internal padding for text readability */
+  margin: 0 !important;
+  background-color: transparent !important; /* Make it transparent so background shows through */
+}
+
+/* Remove padding from the chat container itself */
+.vfrc-chat {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Remove spacing from message spacer */
+.vfrc-chat--spacer {
+  padding: 0 !important;
+  margin: 0 !important;
 }

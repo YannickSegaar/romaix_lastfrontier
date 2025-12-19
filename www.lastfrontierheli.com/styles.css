@@ -1,6 +1,6 @@
 /* Define your custom fonts */
 @font-face {
-  font-family: 'Nexa Rust Sans Black ';
+  font-family: 'Nexa Rust Sans Black';
   src: url('fonts/NexaRustSansBlack-Regular.woff2') format('woff2'),
        url('fonts/NexaRustSansBlack-Regular.otf') format('opentype');
   font-weight: normal;
@@ -20,7 +20,7 @@
 /* Apply font to header/title */
 .vfrc-header,
 .vfrc-assistant-info--title {
-  font-family: 'Nexa Rust Sans Black 2', sans-serif !important;
+  font-family: 'Nexa Rust Sans Black', sans-serif !important;
 }
 
 /* Apply font to agent messages */

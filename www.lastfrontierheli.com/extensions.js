@@ -8106,3 +8106,237 @@ export const LastFrontierHeliskiingLeadForm4 = {
     };
   }
 };
+
+
+// YRS: FEEDBACK EXTENSION VERSION 1 (6 JAN 2025 14:17 CEST)
+
+export const FeedbackExtension1 = {
+  name: 'Feedback',
+  type: 'response',
+  match: ({ trace }) =>
+    trace.type === 'ext_feedback1' || trace.payload?.name === 'ext_feedback1',
+  render: ({ trace, element }) => {
+    removePreviousFeedbackElements();
+    
+    const feedbackContainer = document.createElement('div');
+    feedbackContainer.innerHTML = `
+      <style>
+        .vfrc-feedback {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        
+        .vfrc-feedback--header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+        
+        .vfrc-feedback--description {
+          font-size: 0.8em;
+          color: grey;
+          pointer-events: none;
+          font-family: 'Open Sans', sans-serif !important;
+        }
+        
+        .vfrc-feedback--buttons {
+          display: flex;
+        }
+        
+        .vfrc-feedback--button {
+          margin: 0;
+          padding: 0;
+          margin-left: 0px;
+          border: none;
+          background: none;
+          opacity: 0.2;
+          cursor: pointer;
+        }
+        
+        .vfrc-feedback--button:hover {
+          opacity: 0.5;
+        }
+        
+        .vfrc-feedback--button.selected {
+          opacity: 0.6;
+        }
+        
+        .vfrc-feedback--button.disabled {
+          pointer-events: none;
+        }
+        
+        .vfrc-feedback--button:first-child svg {
+          fill: none;
+          stroke: none;
+          border: none;
+          margin-left: 6px;
+        }
+        
+        .vfrc-feedback--button:last-child svg {
+          margin-left: 4px;
+          fill: none;
+          stroke: none;
+          border: none;
+          transform: rotate(180deg);
+        }
+        
+        /* Comment section styles */
+        .vfrc-feedback--comment-section {
+          display: none;
+          flex-direction: column;
+          gap: 8px;
+          margin-top: 8px;
+        }
+        
+        .vfrc-feedback--comment-section.visible {
+          display: flex;
+        }
+        
+        .vfrc-feedback--comment-label {
+          font-size: 0.75em;
+          color: #666;
+          font-family: 'Open Sans', sans-serif !important;
+        }
+        
+        .vfrc-feedback--comment-input {
+          width: 100%;
+          min-height: 60px;
+          padding: 8px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 0.85em;
+          font-family: 'Open Sans', sans-serif !important;
+          resize: vertical;
+        }
+        
+        .vfrc-feedback--comment-input:focus {
+          outline: none;
+          border-color: #2e6ee1;
+        }
+        
+        .vfrc-feedback--comment-actions {
+          display: flex;
+          gap: 8px;
+          justify-content: flex-end;
+        }
+        
+        .vfrc-feedback--comment-btn {
+          padding: 6px 12px;
+          border: none;
+          border-radius: 4px;
+          font-size: 0.8em;
+          cursor: pointer;
+          font-family: 'Open Sans', sans-serif !important;
+        }
+        
+        .vfrc-feedback--comment-btn.submit {
+          background: #2e6ee1;
+          color: white;
+        }
+        
+        .vfrc-feedback--comment-btn.submit:hover {
+          background: #2558b8;
+        }
+        
+        .vfrc-feedback--comment-btn.skip {
+          background: transparent;
+          color: #666;
+        }
+        
+        .vfrc-feedback--comment-btn.skip:hover {
+          background: #f0f0f0;
+        }
+      </style>
+      
+      <div class="vfrc-feedback">
+        <div class="vfrc-feedback--header">
+          <div class="vfrc-feedback--description">Was this answer helpful?</div>
+          <div class="vfrc-feedback--buttons">
+            <button class="vfrc-feedback--button" data-feedback="1">${SVG_Thumb}</button>
+            <button class="vfrc-feedback--button" data-feedback="0">${SVG_Thumb}</button>
+          </div>
+        </div>
+        
+        <div class="vfrc-feedback--comment-section">
+          <div class="vfrc-feedback--comment-label">Would you like to add a comment? (optional)</div>
+          <textarea 
+            class="vfrc-feedback--comment-input" 
+            placeholder="Tell us more about your experience..."
+            maxlength="500"
+          ></textarea>
+          <div class="vfrc-feedback--comment-actions">
+            <button class="vfrc-feedback--comment-btn skip">Skip</button>
+            <button class="vfrc-feedback--comment-btn submit">Submit</button>
+          </div>
+        </div>
+      </div>
+    `;
+    
+    let selectedFeedback = null;
+    const commentSection = feedbackContainer.querySelector('.vfrc-feedback--comment-section');
+    const commentInput = feedbackContainer.querySelector('.vfrc-feedback--comment-input');
+    const submitBtn = feedbackContainer.querySelector('.vfrc-feedback--comment-btn.submit');
+    const skipBtn = feedbackContainer.querySelector('.vfrc-feedback--comment-btn.skip');
+    
+    // Handle thumbs up/down click
+    feedbackContainer.querySelectorAll('.vfrc-feedback--button').forEach((button) => {
+      button.addEventListener('click', function () {
+        selectedFeedback = this.getAttribute('data-feedback');
+        
+        // Disable and highlight selected button
+        feedbackContainer.querySelectorAll('.vfrc-feedback--button').forEach((btn) => {
+          btn.classList.add('disabled');
+          if (btn === this) {
+            btn.classList.add('selected');
+          }
+        });
+        
+        // Show comment section
+        commentSection.classList.add('visible');
+        commentInput.focus();
+      });
+    });
+    
+    // Handle submit with comment
+    submitBtn.addEventListener('click', function () {
+      const comment = commentInput.value.trim();
+      
+      window.voiceflow.chat.interact({
+        type: 'complete',
+        payload: { 
+          feedback: selectedFeedback,
+          comment: comment || null // Send null if no comment
+        }
+      });
+      
+      // Hide the entire feedback widget after submission
+      feedbackContainer.style.display = 'none';
+    });
+    
+    // Handle skip (submit without comment)
+    skipBtn.addEventListener('click', function () {
+      window.voiceflow.chat.interact({
+        type: 'complete',
+        payload: { 
+          feedback: selectedFeedback,
+          comment: null
+        }
+      });
+      
+      // Hide the entire feedback widget after submission
+      feedbackContainer.style.display = 'none';
+    });
+    
+    element.appendChild(feedbackContainer);
+  }
+};
+
+function removePreviousFeedbackElements() {
+  const chatWidget = document.querySelector('#voiceflow-chat').shadowRoot.querySelector('.vfrc-chat--dialog');
+  const feedbackWidget = chatWidget.querySelector('.vfrc-feedback');
+  
+  if (feedbackWidget) {
+    feedbackWidget.closest('.vfrc-system-response').remove();
+  }
+}

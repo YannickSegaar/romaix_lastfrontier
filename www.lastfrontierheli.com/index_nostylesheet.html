@@ -3994,8 +3994,6 @@ console.log("Script loaded. Initializing Voiceflow chat widget...");
             const LastFrontierHeliskiingLeadForm2 = extensionModule.LastFrontierHeliskiingLeadForm2;
             const LastFrontierHeliskiingLeadForm3 = extensionModule.LastFrontierHeliskiingLeadForm3;
             const LastFrontierHeliskiingLeadForm4 = extensionModule.LastFrontierHeliskiingLeadForm4;
-            const FeedbackExtension1 = extensionModule.FeedbackExtension1;
-            
 
             // Validate extension structures
             const extensions = [];
@@ -4028,11 +4026,6 @@ console.log("Script loaded. Initializing Voiceflow chat widget...");
                 extensions.push(LastFrontierHeliskiingLeadForm4);
             }
 
-            if (FeedbackExtension1 && FeedbackExtension1.name) {
-                extensions.push(FeedbackExtension1);
-            }
-
-
             if (extensions.length === 0) {
                 throw new Error("No valid extensions found");
             }
@@ -4040,42 +4033,22 @@ console.log("Script loaded. Initializing Voiceflow chat widget...");
             console.log("Extensions imported successfully:", extensions);
 
             window.voiceflow.chat.load({
-                verify: { projectID: '695d0aec92f4a792605f46cc' },
+                verify: { projectID: '68cac9b5ec4cdbd2280e073d' },
                 url: 'https://general-runtime.voiceflow.com',
                 versionID: 'production',
                 assistant: {
                   // Link to your GitHub-hosted stylesheet
-            stylesheet: 'https://yannicksegaar.github.io/romaix_lastfrontier/www.lastfrontierheli.com/styles.css',
                     extensions: extensions // Multiple extensions array
                 }
             }).then(() => {
                 console.log("Chat loaded without extensions");
-                
-                // Proactive messages (fallback)
-                window.voiceflow.chat.proactive.clear();
-                setTimeout(() => {
-                    window.voiceflow.chat.proactive.push({ 
-                        type: 'text', 
-                        payload: { message: 'Hi there!' } 
-                    });
-                }, 1000);
-                
-                setTimeout(() => {
-                    window.voiceflow.chat.proactive.push({ 
-                        type: 'text', 
-                        payload: { message: 'Ready for winter? ❄️' } 
-                    });
-                }, 2000);
-                
-                setTimeout(() => {
-                    window.voiceflow.chat.open();
-                }, 3000);
+
             });
         } catch (error) {
             console.error("Error loading Voiceflow extensions:", error);
             // Fallback: load Voiceflow without extensions
             window.voiceflow.chat.load({
-                verify: { projectID: '695d0aec92f4a792605f46cc' },
+                verify: { projectID: '68cac9b5ec4cdbd2280e073d' },
                 url: 'https://general-runtime.voiceflow.com',
                 versionID: 'production'
             });
